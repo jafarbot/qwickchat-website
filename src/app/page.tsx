@@ -64,9 +64,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            We install and customize AI agents that handle appointments, generate leads, fix websites, 
-            and automate your business — all through a simple text message. WhatsApp, iMessage, Telegram, 
-            or whatever your business uses. Just text your agent and it handles the rest.
+            AI agents that handle appointments, leads, and customer support — all via text message. 
+            No apps to install, no dashboards to check. Just text and get it done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
