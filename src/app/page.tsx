@@ -1,318 +1,192 @@
 'use client';
 
-import { useState } from 'react';
-import { Calendar, Users, Globe, MessageSquare, Sparkles, ArrowRight, Phone, Mail, MapPin, Menu, X, MessageCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[#0A0A0B] text-[#FAFAFA] overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#C9A962]/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-[#1A1A2E]/50 rounded-full blur-[150px]" />
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Sparkles className="h-6 w-6 text-primary-600 mr-2" />
-              <span className="font-bold text-xl text-gray-900">QuickChat</span>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="text-gray-600 hover:text-primary-600 transition">Services</a>
-              <a href="#pricing" className="text-gray-600 hover:text-primary-600 transition">Pricing</a>
-              <a href="#contact" className="text-gray-600 hover:text-primary-600 transition">Contact</a>
-              <a href="#contact" className="bg-primary-600 text-white px-5 py-2 rounded-full font-medium hover:bg-primary-700 transition">
-                Get Started
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#0A0A0B]/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <a href="#" className="flex items-center gap-2 group">
+              <div className="w-8 h-8 border border-[#C9A962] rounded-sm flex items-center justify-center group-hover:bg-[#C9A962] transition-all duration-300">
+                <span className="text-[#C9A962] group-hover:text-[#0A0A0B] text-sm font-bold">Q</span>
+              </div>
+              <span className="text-lg tracking-tight">QuickChat</span>
+            </a>
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#services" className="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+              <a href="#pricing" className="text-sm text-white/60 hover:text-white transition-colors">Pricing</a>
+              <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer" 
+                 className="px-6 py-2.5 border border-[#C9A962] text-[#C9A962] text-sm hover:bg-[#C9A962] hover:text-[#0A0A0B] transition-all duration-300">
+                Book Consultation
               </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2 text-gray-600 hover:text-primary-600"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
           </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-100">
-              <a href="#services" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Services</a>
-              <a href="#pricing" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
-              <a href="#contact" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-              <a href="#contact" className="inline-block mt-2 bg-primary-600 text-white px-5 py-2 rounded-full font-medium hover:bg-primary-700 transition" onClick={() => setMobileMenuOpen(false)}>
-                Get Started
-              </a>
-            </div>
-          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-6">
-            <Sparkles className="h-4 w-4 mr-2" />
-            Now booking March implementations
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            Your Business,{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400">
-              On Autopilot
+      <section className="relative min-h-screen flex items-center justify-center pt-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <div className={`transition-all duration-1000 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <span className="inline-block px-4 py-1.5 border border-[#C9A962]/30 text-[#C9A962] text-xs tracking-widest uppercase mb-8">
+              AI Operations for Modern Business
             </span>
+          </div>
+          
+          <h1 className={`text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 transition-all duration-1000 delay-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            Your business,
+            <br />
+            <span className="text-[#C9A962]">elevated.</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            We build AI agents that handle the repetitive work — scheduling, lead capture, follow-ups, and more. 
-            You focus on the work that matters.
+          
+          <p className={`max-w-2xl mx-auto text-lg md:text-xl text-white/50 leading-relaxed mb-12 transition-all duration-1000 delay-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            We build intelligent agents that handle the work you\'d rather not. 
+            Scheduling, communications, and operations —
+            <span className="text-white"> all running in the background.</span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
-              Book Free Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
+          
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 transition-all duration-1000 delay-900 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
+               className="group flex items-center gap-3 px-8 py-4 bg-[#C9A962] text-[#0A0A0B] font-medium hover:bg-[#D4B76A] transition-all duration-300">
+              Schedule Consultation
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#services" className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition">
-              See How It Works
+            <a href="#services" className="text-white/50 hover:text-white text-sm underline underline-offset-4 transition-colors">
+              Explore Services
             </a>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Intelligent Operations</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Every business is different. We design and deploy agents tailored to your specific workflows.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <ServiceCard 
-              icon={<Calendar className="h-8 w-8 text-primary-600" />}
-              title="Scheduling"
-              description="Calendar management, rescheduling, and automated confirmations. No double-bookings, no missed slots."
-            />
-            <ServiceCard 
-              icon={<Users className="h-8 w-8 text-primary-600" />}
-              title="Lead Management"
-              description="Capture, qualify, and nurture leads through your entire sales pipeline — automatically."
-            />
-            <ServiceCard 
-              icon={<Globe className="h-8 w-8 text-primary-600" />}
-              title="Digital Presence"
-              description="Website monitoring, content updates, and technical maintenance handled without your input."
-            />
-            <ServiceCard 
-              icon={<MessageSquare className="h-8 w-8 text-primary-600" />}
-              title="Client Communications"
-              description="Professional inbound and outbound messaging that maintains your brand voice."
-            />
+      <section id="services" className="relative py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            <div>
+              <span className="text-[#C9A962] text-xs tracking-widest uppercase">What We Do</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl mt-4 mb-6">
+                Intelligent
+                <br />
+                Operations
+              </h2>
+              <p className="text-white/40 text-lg leading-relaxed max-w-md">
+                Every business has repetitive work. We automate it — beautifully.
+              </p>
+            </div>
+
+            <div className="space-y-1">
+              {[
+                { num: '01', title: 'Scheduling', desc: 'Calendar management, rescheduling, confirmations — never miss an appointment' },
+                { num: '02', title: 'Lead Management', desc: 'Capture, qualify, and nurture leads through your entire pipeline' },
+                { num: '03', title: 'Client Communications', desc: 'Professional inbound and outbound that maintains your voice' },
+                { num: '04', title: 'Digital Presence', desc: 'Website monitoring, updates, and technical maintenance handled silently' },
+              ].map((service, i) => (
+                <div key={i} className="group border-t border-white/10 py-8 hover:bg-white/[0.02] transition-all duration-500 cursor-pointer">
+                  <div className="flex items-start gap-8">
+                    <span className="text-[#C9A962]/30 text-sm font-mono group-hover:text-[#C9A962] transition-colors">
+                      {service.num}
+                    </span>
+                    <div>
+                      <h3 className="text-2xl mb-2 group-hover:text-[#C9A962] transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-white/40 group-hover:text-white/60 transition-colors max-w-md">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
-      {/* How It Works */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">From discovery to go-live in days, not weeks.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <StepCard 
-              number="1"
-              title="Discovery"
-              description="We learn your business — your workflows, pain points, and what takes up your time."
-            />
-            <StepCard 
-              number="2"
-              title="Setup"
-              description="We build and customize your AI agent, integrate with your tools, and train it on your business."
-            />
-            <StepCard 
-              number="3"
-              title="Go Live"
-              description="Your AI starts working. We monitor, optimize, and handle any tweaks you need."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Messaging Platforms Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Text Us From Anywhere</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Your business runs where you do. So does your AI.</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-            <PlatformCard name="iMessage" color="bg-gradient-to-br from-green-400 to-green-500" />
-            <PlatformCard name="WhatsApp" color="bg-gradient-to-br from-green-500 to-emerald-600" />
-            <PlatformCard name="Telegram" color="bg-gradient-to-br from-blue-400 to-blue-500" />
-            <PlatformCard name="SMS" color="bg-gradient-to-br from-gray-400 to-gray-500" />
-          </div>
-          <p className="text-center text-gray-500 mt-8 max-w-xl mx-auto">
-            "Cancel Mrs. Johnson's 3pm appointment and book her for tomorrow at 10am" — 
-            <span className="text-primary-600 font-medium"> Done.</span>
-          </p>
-        </div>
-      </section>
-
-
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Hiring a full-time assistant costs $3,000+/month. We do it for a fraction.</p>
+      <section id="pricing" className="relative py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <span className="text-[#C9A962] text-xs tracking-widest uppercase">Investment</span>
+            <h2 className="text-4xl md:text-5xl mt-4">Simple Pricing</h2>
+            <p className="text-white/40 mt-4 max-w-xl mx-auto">The cost of a part-time assistant. The output of a full-time team.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <PricingCard 
-              name="Starter"
-              price="$299"
-              description="Perfect for solopreneurs and small shops"
-              features={[
-                "Appointment booking & cancellation",
-                "Basic FAQ responses",
-                "Email notifications",
-                "1 calendar integration",
-                "Business hours support"
-              ]}
-              cta="Get Started"
-            />
-            <PricingCard 
-              name="Growth"
-              price="$599"
-              description="For growing businesses with more needs"
-              featured={true}
-              features={[
-                "Everything in Starter",
-                "Lead capture & qualification",
-                "Website monitoring & fixes",
-                "SMS + Email notifications",
-                "3 calendar integrations",
-                "Priority support"
-              ]}
-              cta="Get Started"
-            />
-            <PricingCard 
-              name="Full Service"
-              price="$999"
-              description="White-glove service for demanding businesses"
-              features={[
-                "Everything in Growth",
-                "Custom integrations",
-                "Advanced automation workflows",
-                "Dedicated phone line",
-                "Unlimited calendar sync",
-                "24/7 priority support"
-              ]}
-              cta="Contact Us"
-            />
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: 'Essential', price: '$299', desc: 'For solopreneurs', features: ['Scheduling automation', 'Basic email handling', 'Calendar sync'] },
+              { name: 'Growth', price: '$599', desc: 'For growing businesses', features: ['Everything in Essential', 'Lead capture & nurture', 'Website monitoring', 'Priority support'], popular: true },
+              { name: 'Enterprise', price: '$999', desc: 'For established businesses', features: ['Everything in Growth', 'Custom integrations', 'Dedicated operations', '24/7 availability'] },
+            ].map((plan, i) => (
+              <div key={i} className={`relative p-8 border ${plan.popular ? 'border-[#C9A962] bg-[#C9A962]/5' : 'border-white/10 bg-white/[0.02]'} hover:border-[#C9A962]/50 transition-all duration-300`}>
+                {plan.popular && <span className="absolute top-0 right-0 bg-[#C9A962] text-[#0A0A0B] text-xs px-3 py-1">Most Popular</span>}
+                <h3 className="text-xl mb-2">{plan.name}</h3>
+                <p className="text-white/40 text-sm mb-6">{plan.desc}</p>
+                <div className="text-4xl mb-8">{plan.price}<span className="text-lg text-white/40">/mo</span></div>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((f, j) => (
+                    <li key={j} className="flex items-center gap-3 text-sm text-white/60">
+                      <span className="w-1 h-1 bg-[#C9A962] rounded-full"></span>{f}
+                    </li>
+                  ))}
+                </ul>
+                <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
+                   className={`block text-center py-3 border ${plan.popular ? 'bg-[#C9A962] text-[#0A0A0B] border-[#C9A962]' : 'border-white/20 text-white hover:bg-white hover:text-[#0A0A0B]'} transition-all duration-300`}>
+                  Get Started
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-primary-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Automate Your Business?</h2>
-          <p className="text-primary-100 mb-10 text-lg">
-            Let's talk about what AI can do for you. Free consultation for Manalapan area businesses.
+      <section className="relative py-32 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <span className="text-[#C9A962] text-xs tracking-widest uppercase">Ready?</span>
+          <h2 className="text-4xl md:text-6xl mt-4 mb-6">Let\'s discuss your operations</h2>
+          <p className="text-white/40 text-lg mb-12 max-w-xl mx-auto">
+            Schedule a free 30-minute consultation. We\'ll audit your current workflows and show you what\'s possible.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <a href="tel:+1-732-555-0123" className="flex items-center bg-white text-primary-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition">
-              <Phone className="mr-2 h-5 w-5" />
-              Call Now
-            </a>
-            <a href="mailto:hello@qwickchat.xyz" className="flex items-center bg-primary-700 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-800 transition border border-primary-500">
-              <Mail className="mr-2 h-5 w-5" />
-              Email Us
-            </a>
-          </div>
-          <p className="text-primary-200 mt-8 text-sm">
-            hello@qwickchat.xyz · Manalapan, NJ · Serving 50-mile radius
-          </p>
+          <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
+             className="inline-flex items-center gap-3 px-10 py-5 bg-[#C9A962] text-[#0A0A0B] font-medium hover:bg-[#D4B76A] transition-all duration-300">
+            Book Free Consultation
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center mb-4 md:mb-0">
-              <Sparkles className="h-6 w-6 text-primary-500 mr-2" />
-              <span className="font-bold text-xl text-white">QuickChat</span>
+      <footer className="border-t border-white/5 py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 border border-[#C9A962]/50 rounded-sm flex items-center justify-center">
+              <span className="text-[#C9A962] text-xs font-bold">Q</span>
             </div>
-            <p className="text-sm">© 2025 QuickChat. Local AI automation for Manalapan businesses.</p>
+            <span>QuickChat</span>
           </div>
+          <p className="text-white/30 text-sm">© 2025 QuickChat. Built for businesses that value their time.</p>
         </div>
       </footer>
     </main>
-  );
-}
-
-function ServiceCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
-  return (
-    <div className="p-6 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-lg transition border border-gray-100">
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  );
-}
-
-function StepCard({ number, title, description }: { number: string, title: string, description: string }) {
-  return (
-    <div className="text-center p-6">
-      <div className="w-16 h-16 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-        {number}
-      </div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  );
-}
-
-function PricingCard({ name, price, description, features, featured, cta }: { name: string, price: string, description: string, features: string[], featured?: boolean, cta: string }) {
-  return (
-    <div className={`rounded-2xl p-8 ${featured ? 'bg-primary-600 text-white ring-4 ring-primary-200' : 'bg-white border border-gray-200'}`}>
-      {featured && (
-        <div className="inline-block px-3 py-1 rounded-full bg-primary-500 text-white text-xs font-semibold mb-4">
-          Most Popular
-        </div>
-      )}
-      <h3 className={`text-xl font-bold mb-2 ${featured ? 'text-white' : 'text-gray-900'}`}>{name}</h3>
-      <div className="mb-4">
-        <span className={`text-4xl font-bold ${featured ? 'text-white' : 'text-gray-900'}`}>{price}</span>
-        <span className={`text-sm ${featured ? 'text-primary-200' : 'text-gray-500'}`}>/month</span>
-      </div>
-      <p className={`text-sm mb-6 ${featured ? 'text-primary-100' : 'text-gray-600'}`}>{description}</p>
-      <ul className="space-y-3 mb-8">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-start">
-            <svg className={`h-5 w-5 mr-2 flex-shrink-0 ${featured ? 'text-primary-300' : 'text-green-500'}`} fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            <span className={featured ? 'text-white' : 'text-gray-600'}>{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <button className={`w-full py-3 rounded-full font-semibold transition ${featured ? 'bg-white text-primary-700 hover:bg-gray-100' : 'bg-primary-600 text-white hover:bg-primary-700'}`}>
-        {cta}
-      </button>
-    </div>
-  );
-}
-
-function PlatformCard({ name, color }: { name: string, color: string }) {
-  return (
-    <div className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-gray-50 hover:shadow-lg transition border border-gray-100">
-      <div className={`w-14 h-14 rounded-xl ${color} flex items-center justify-center`}>
-        <MessageCircle className="h-7 w-7 text-white" />
-      </div>
-      <span className="font-semibold text-gray-900">{name}</span>
-    </div>
   );
 }
