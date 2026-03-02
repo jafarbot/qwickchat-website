@@ -54,18 +54,18 @@ export default function Home() {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-6">
-            <MapPin className="h-4 w-4 mr-2" />
-            Serving Manalapan, NJ & 50-mile radius
+            <Sparkles className="h-4 w-4 mr-2" />
+            Now booking March implementations
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            AI That Runs Your{' '}
+            Your Business,{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400">
-              Business Operations
+              On Autopilot
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-            AI agents that handle appointments, leads, and customer support — all via text message. 
-            No apps to install, no dashboards to check. Just text and get it done.
+            We build AI agents that handle the repetitive work — scheduling, lead capture, follow-ups, and more. 
+            You focus on the work that matters.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
@@ -83,29 +83,29 @@ export default function Home() {
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Your AI Agent Can Do</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Custom-built for your business needs. Bookings, leads, support — all automated.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Intelligent Operations</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Every business is different. We design and deploy agents tailored to your specific workflows.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard 
               icon={<Calendar className="h-8 w-8 text-primary-600" />}
-              title="Appointments"
-              description="Book, reschedule, and cancel appointments 24/7. Syncs with your calendar automatically."
+              title="Scheduling"
+              description="Calendar management, rescheduling, and automated confirmations. No double-bookings, no missed slots."
             />
             <ServiceCard 
               icon={<Users className="h-8 w-8 text-primary-600" />}
-              title="Lead Generation"
-              description="Capture leads from your website, qualify prospects, and follow up automatically."
+              title="Lead Management"
+              description="Capture, qualify, and nurture leads through your entire sales pipeline — automatically."
             />
             <ServiceCard 
               icon={<Globe className="h-8 w-8 text-primary-600" />}
-              title="Website Fixes"
-              description="Monitor your site, fix issues, update content, and keep everything running smoothly."
+              title="Digital Presence"
+              description="Website monitoring, content updates, and technical maintenance handled without your input."
             />
             <ServiceCard 
               icon={<MessageSquare className="h-8 w-8 text-primary-600" />}
-              title="Customer Support"
-              description="Answer questions, handle inquiries, and provide instant support to your customers."
+              title="Client Communications"
+              description="Professional inbound and outbound messaging that maintains your brand voice."
             />
           </div>
         </div>
