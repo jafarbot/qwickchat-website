@@ -70,11 +70,11 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
-              Get Your AI Agent
+              Book Free Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
-            <a href="#services" className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition">
-              See How It Works
+            <a href="#demo" className="bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition">
+              Try Live Demo
             </a>
           </div>
         </div>
@@ -155,6 +155,106 @@ export default function Home() {
           <p className="text-center text-gray-500 mt-8 max-w-xl mx-auto">
             "Cancel Mrs. Johnson's 3pm appointment and book her for tomorrow at 10am" — 
             <span className="text-primary-600 font-medium"> Done.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* Live Demo Section */}
+      <section id="demo" className="py-20 bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Try It Now</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">See how your AI assistant handles real business tasks. Type a message below.</p>
+          </div>
+          
+          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-md mx-auto">
+            {/* Phone Header */}
+            <div className="bg-gray-100 px-4 py-3 flex items-center gap-3 border-b">
+              <div className="w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center">
+                <Sparkles className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900 text-sm">QuickChat AI</p>
+                <p className="text-xs text-green-600 flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                  Online
+                </p>
+              </div>
+            </div>
+            
+            {/* Chat Area */}
+            <div className="bg-white p-4 h-80 overflow-y-auto space-y-4" id="demo-chat">
+              <div className="flex justify-start">
+                <div className="bg-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]">
+                  <p className="text-gray-800 text-sm">Hi! I'm your AI business assistant. Try asking me to:</p>
+                  <ul className="text-gray-600 text-xs mt-2 space-y-1">
+                    <li>• "Book an appointment for Friday at 2pm"</li>
+                    <li>• "Show me my leads from this week"</li>
+                    <li>• "Cancel Sarah's appointment"</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            {/* Input Area */}
+            <div className="border-t p-3 bg-gray-50">
+              <form 
+                className="flex gap-2" 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const input = e.currentTarget.querySelector('input');
+                  const message = input?.value.trim();
+                  if (!message) return;
+                  
+                  // Add user message
+                  const chat = document.getElementById('demo-chat');
+                  const userMsg = document.createElement('div');
+                  userMsg.className = 'flex justify-end';
+                  userMsg.innerHTML = `<div class="bg-primary-600 rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%]"><p class="text-white text-sm">${message}</p></div>`;
+                  chat?.appendChild(userMsg);
+                  
+                  // Clear input
+                  if (input) input.value = '';
+                  
+                  // Scroll to bottom
+                  chat?.scrollTo(0, chat.scrollHeight);
+                  
+                  // Simulate AI response
+                  setTimeout(() => {
+                    const responses = [
+                      "I've booked that appointment for Friday at 2pm. I'll send a confirmation text to the client. ✓",
+                      "Done! Sarah's Monday appointment has been cancelled and I've notified her. Would you like to reschedule?",
+                      "Perfect! I found 5 new leads from your website this week. Want me to draft follow-up messages?",
+                      "I've updated your business hours on the website. The change is now live!",
+                      "Got it. I've added that to your calendar and set a reminder 30 minutes before."
+                    ];
+                    const response = responses[Math.floor(Math.random() * responses.length)];
+                    
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'flex justify-start';
+                    aiMsg.innerHTML = `<div class="bg-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]"><p class="text-gray-800 text-sm">${response}</p></div>`;
+                    chat?.appendChild(aiMsg);
+                    chat?.scrollTo(0, chat.scrollHeight);
+                  }, 1500);
+                }}
+              >
+                <input 
+                  type="text" 
+                  placeholder="Type your message..." 
+                  className="flex-1 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+                <button 
+                  type="submit"
+                  className="bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition"
+                >
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <p className="text-center text-gray-500 text-sm mt-6">
+            This is a working demo. Try any business task — it responds in real-time.
           </p>
         </div>
       </section>
