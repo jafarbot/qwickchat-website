@@ -60,7 +60,7 @@ export default function Home() {
           </h1>
           
           <p className={`max-w-2xl mx-auto text-lg md:text-xl text-white/50 leading-relaxed mb-12 transition-all duration-1000 delay-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            We build intelligent agents that handle the work you\'d rather not. 
+            We build intelligent agents that handle the work you&apos;d rather not.
             Scheduling, communications, and operations —
             <span className="text-white"> all running in the background.</span>
           </p>
@@ -163,7 +163,7 @@ export default function Home() {
       <section className="relative py-32 border-t border-white/5">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <span className="text-[#C9A962] text-xs tracking-widest uppercase">Ready?</span>
-          <h2 className="text-4xl md:text-6xl mt-4 mb-6">Let\'s discuss your operations</h2>
+          <h2 className="text-4xl md:text-6xl mt-4 mb-6">Let&apos;s discuss your operations</h2>
           <p className="text-white/40 text-lg mb-12 max-w-xl mx-auto">
             Schedule a free 30-minute consultation. We\'ll audit your current workflows and show you what\'s possible.
           </p>
@@ -184,7 +184,7 @@ export default function Home() {
             </div>
             <span>QuickChat</span>
           </div>
-          <p className="text-white/30 text-sm">© 2025 QuickChat. Built for businesses that value their time.</p>
+          <p className="text-white/30 text-sm">&copy; 2025 QuickChat. Built for businesses that value their time.</p>
         </div>
       </footer>
     </main>
