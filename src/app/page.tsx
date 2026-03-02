@@ -1,8 +1,11 @@
 'use client';
 
-import { Calendar, Users, Globe, MessageSquare, Sparkles, ArrowRight, Phone, Mail, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, Users, Globe, MessageSquare, Sparkles, ArrowRight, Phone, Mail, MapPin, Menu, X, MessageCircle } from 'lucide-react';
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen">
       {/* Navigation */}
@@ -13,6 +16,8 @@ export default function Home() {
               <Sparkles className="h-6 w-6 text-primary-600 mr-2" />
               <span className="font-bold text-xl text-gray-900">QuickChat</span>
             </div>
+            
+            {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               <a href="#services" className="text-gray-600 hover:text-primary-600 transition">Services</a>
               <a href="#pricing" className="text-gray-600 hover:text-primary-600 transition">Pricing</a>
@@ -21,7 +26,27 @@ export default function Home() {
                 Get Started
               </a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-gray-600 hover:text-primary-600"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 border-t border-gray-100">
+              <a href="#services" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Services</a>
+              <a href="#pricing" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Pricing</a>
+              <a href="#contact" className="block py-2 text-gray-600 hover:text-primary-600 transition" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+              <a href="#contact" className="inline-block mt-2 bg-primary-600 text-white px-5 py-2 rounded-full font-medium hover:bg-primary-700 transition" onClick={() => setMobileMenuOpen(false)}>
+                Get Started
+              </a>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -40,7 +65,8 @@ export default function Home() {
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
             We install and customize AI agents that handle appointments, generate leads, fix websites, 
-            and automate your business — so you can focus on what you do best.
+            and automate your business — all through a simple text message. WhatsApp, iMessage, Telegram, 
+            or whatever your business uses. Just text your agent and it handles the rest.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
@@ -113,12 +139,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Messaging Platforms Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Text Us From Anywhere</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Your business runs where you do. So does your AI.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            <PlatformCard name="iMessage" color="bg-gradient-to-br from-green-400 to-green-500" />
+            <PlatformCard name="WhatsApp" color="bg-gradient-to-br from-green-500 to-emerald-600" />
+            <PlatformCard name="Telegram" color="bg-gradient-to-br from-blue-400 to-blue-500" />
+            <PlatformCard name="SMS" color="bg-gradient-to-br from-gray-400 to-gray-500" />
+          </div>
+          <p className="text-center text-gray-500 mt-8 max-w-xl mx-auto">
+            "Cancel Mrs. Johnson's 3pm appointment and book her for tomorrow at 10am" — 
+            <span className="text-primary-600 font-medium"> Done.</span>
+          </p>
+        </div>
+      </section>
+
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-white">
+      <section id="pricing" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">No setup fees. Cancel anytime. Local support included.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">Hiring a full-time assistant costs $3,000+/month. We do it for a fraction.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <PricingCard 
@@ -255,6 +301,17 @@ function PricingCard({ name, price, description, features, featured, cta }: { na
       <button className={`w-full py-3 rounded-full font-semibold transition ${featured ? 'bg-white text-primary-700 hover:bg-gray-100' : 'bg-primary-600 text-white hover:bg-primary-700'}`}>
         {cta}
       </button>
+    </div>
+  );
+}
+
+function PlatformCard({ name, color }: { name: string, color: string }) {
+  return (
+    <div className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-gray-50 hover:shadow-lg transition border border-gray-100">
+      <div className={`w-14 h-14 rounded-xl ${color} flex items-center justify-center`}>
+        <MessageCircle className="h-7 w-7 text-white" />
+      </div>
+      <span className="font-semibold text-gray-900">{name}</span>
     </div>
   );
 }
