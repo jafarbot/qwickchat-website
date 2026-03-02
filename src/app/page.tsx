@@ -69,7 +69,7 @@ export default function Home() {
             or whatever your business uses. Just text your agent and it handles the rest.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
+            <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer" className="bg-primary-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-700 transition flex items-center justify-center">
               Book Free Consultation
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
