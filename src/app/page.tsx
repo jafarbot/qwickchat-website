@@ -165,7 +165,7 @@ export default function Home() {
           <span className="text-[#C9A962] text-xs tracking-widest uppercase">Ready?</span>
           <h2 className="text-4xl md:text-6xl mt-4 mb-6">Let&apos;s discuss your operations</h2>
           <p className="text-white/40 text-lg mb-12 max-w-xl mx-auto">
-            Schedule a free 30-minute consultation. We\'ll audit your current workflows and show you what\'s possible.
+            Schedule a free 30-minute consultation. We&apos;ll audit your current workflows and show you what&apos;s possible.
           </p>
           <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center gap-3 px-10 py-5 bg-[#C9A962] text-[#0A0A0B] font-medium hover:bg-[#D4B76A] transition-all duration-300">
