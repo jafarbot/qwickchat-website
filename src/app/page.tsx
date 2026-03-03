@@ -131,30 +131,26 @@ export default function Home() {
             <p className="text-white/40 mt-4 max-w-xl mx-auto">The cost of a part-time assistant. The output of a full-time team.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: 'Essential', price: '$299', desc: 'For solopreneurs', features: ['Scheduling automation', 'Basic email handling', 'Calendar sync'] },
-              { name: 'Growth', price: '$599', desc: 'For growing businesses', features: ['Everything in Essential', 'Lead capture & nurture', 'Website monitoring', 'Priority support'], popular: true },
-              { name: 'Enterprise', price: '$999', desc: 'For established businesses', features: ['Everything in Growth', 'Custom integrations', 'Dedicated operations', '24/7 availability'] },
-            ].map((plan, i) => (
-              <div key={i} className={`relative p-8 border ${plan.popular ? 'border-[#C9A962] bg-[#C9A962]/5' : 'border-white/10 bg-white/[0.02]'} hover:border-[#C9A962]/50 transition-all duration-300`}>
-                {plan.popular && <span className="absolute top-0 right-0 bg-[#C9A962] text-[#0A0A0B] text-xs px-3 py-1">Most Popular</span>}
-                <h3 className="text-xl mb-2">{plan.name}</h3>
-                <p className="text-white/40 text-sm mb-6">{plan.desc}</p>
-                <div className="text-4xl mb-8">{plan.price}<span className="text-lg text-white/40">/mo</span></div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-center gap-3 text-sm text-white/60">
-                      <span className="w-1 h-1 bg-[#C9A962] rounded-full"></span>{f}
-                    </li>
-                  ))}
-                </ul>
-                <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
-                   className={`block text-center py-3 border ${plan.popular ? 'bg-[#C9A962] text-[#0A0A0B] border-[#C9A962]' : 'border-white/20 text-white hover:bg-white hover:text-[#0A0A0B]'} transition-all duration-300`}>
-                  Get Started
-                </a>
-              </div>
-            ))}
+          <div className="max-w-lg mx-auto">
+            <div className="relative p-10 border border-[#C9A962] bg-[#C9A962]/5 rounded-2xl">
+              <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C9A962] text-[#0A0A0B] text-xs px-4 py-1.5 font-semibold">Simple Pricing</span>
+              <h3 className="text-2xl mb-2 text-center">AI Agent Setup</h3>
+              <p className="text-white/40 text-sm mb-8 text-center">Everything you need. Nothing you don't.</p>
+              <div className="mb-1 text-center"><span className="text-sm text-white/40">One-time setup:</span></div>
+              <div className="text-6xl font-bold text-center mb-2">$2,000</div>
+              <div className="text-sm text-[#C9A962] mb-8 text-center">+ $250/month support (completely optional)</div>
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-center gap-3 text-white/80"><span className="w-2 h-2 bg-[#C9A962] rounded-full"></span>AI agent trained on your business</li>
+                <li className="flex items-center gap-3 text-white/80"><span className="w-2 h-2 bg-[#C9A962] rounded-full"></span>Scheduling & calendar management</li>
+                <li className="flex items-center gap-3 text-white/80"><span className="w-2 h-2 bg-[#C9A962] rounded-full"></span>Lead capture & nurture</li>
+                <li className="flex items-center gap-3 text-white/80"><span className="w-2 h-2 bg-[#C9A962] rounded-full"></span>Email & communication handling</li>
+                <li className="flex items-center gap-3 text-white/80"><span className="w-2 h-2 bg-[#C9A962] rounded-full"></span>Own your agent forever (no lock-in)</li>
+              </ul>
+              <a href="https://calendly.com/sino-hexprove/30min" target="_blank" rel="noopener noreferrer"
+                 className="block text-center py-4 bg-[#C9A962] text-[#0A0A0B] font-semibold hover:bg-[#D4B76A] transition-all duration-300">
+                Book Free Consultation
+              </a>
+            </div>
           </div>
         </div>
       </section>
